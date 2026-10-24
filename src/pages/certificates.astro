@@ -1,0 +1,204 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { siteConfig } from '../data/site';
+
+const { certificates } = siteConfig;
+---
+
+<PageLayout title="Certificates" description="Microsoft and industry certifications in Data Science, AI, and Azure.">
+  <div class="page-header">
+    <h1 class="section-title">Certificates</h1>
+    <p class="page-desc">Microsoft and industry certifications in Data Science, AI &amp; Azure.</p>
+  </div>
+
+  {certificates.length === 0 ? (
+    <div class="empty-state">
+      <i class="fas fa-certificate"></i>
+      <p>No certificates listed yet.</p>
+    </div>
+  ) : (
+    <div class="certs-grid">
+      {certificates.map((cert, i) => (
+        <div class="cert-card animate-fade-up" style={`animation-delay: ${i * 0.07}s`}>
+          <div class="cert-icon-wrap">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="cert-body">
+            <h3 class="cert-name">{cert.name}</h3>
+            <div class="cert-meta">
+              <span class="cert-issuer">
+                <i class="fas fa-building"></i> {cert.issuer}
+              </span>
+              <span class="cert-date">
+                <i class="fas fa-calendar-alt"></i> {cert.date}
+              </span>
+            </div>
+            {cert.url && (
+              <a href={cert.url} target="_blank" rel="noopener" class="cert-link">
+                <i class="fas fa-external-link-alt"></i> View Certificate
+              </a>
+            )}
+          </div>
+          <div class="cert-badge">
+            <span class="badge">{cert.type || 'certification'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</PageLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-desc {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .certs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .cert-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  }
+
+  .cert-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cert-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+
+  .cert-card:hover .cert-icon-wrap {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+  }
+
+  .cert-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cert-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+    color: #ffffff;
+    line-height: 1.35;
+  }
+
+  .cert-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-issuer,
+  .cert-date {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .cert-issuer i,
+  .cert-date i {
+    color: #ffffff;
+    font-size: 0.75rem;
+  }
+
+  .cert-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 255, 255, 0.4);
+    transition: var(--transition);
+  }
+
+  .cert-link:hover {
+    text-decoration-color: #ffffff;
+  }
+
+  .cert-badge {
+    flex-shrink: 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .cert-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cert-badge {
+      align-self: flex-start;
+    }
+  }
+</style>

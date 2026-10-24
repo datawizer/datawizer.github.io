@@ -1,0 +1,140 @@
+---
+import { siteConfig } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-icon">⟨/⟩</span>
+      <span class="brand-text">{siteConfig.title}</span>
+    </div>
+    <p class="footer-tagline">{siteConfig.author.bio} &mdash; {siteConfig.author.location}</p>
+    <div class="footer-links">
+      {siteConfig.author.github && (
+        <a href={`https://github.com/${siteConfig.author.github}`} target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      )}
+      {siteConfig.author.linkedin && (
+        <a href={`https://www.linkedin.com/in/${siteConfig.author.linkedin}`} target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      )}
+      {siteConfig.author.twitter && (
+        <a href={`https://twitter.com/${siteConfig.author.twitter}`} target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+      )}
+      {siteConfig.author.email && (
+        <a href={`mailto:${siteConfig.author.email}`} aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      )}
+    </div>
+    <p class="footer-copy">
+      &copy; {new Date().getFullYear()} {siteConfig.author.name}. Built with
+      <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #09090b;
+    border-top: 1px solid var(--color-border);
+    padding: 3.5rem 1.5rem 2.5rem;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .brand-icon {
+    font-family: var(--font-mono);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .brand-text {
+    color: #ffffff;
+  }
+
+  .footer-tagline {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+  }
+
+  .footer-links a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+
+  .footer-links a:hover {
+    color: #000000;
+    border-color: #ffffff;
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--color-text-faint);
+    margin: 0.5rem 0 0;
+  }
+
+  .footer-copy a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

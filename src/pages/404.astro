@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="404 – Page Not Found" description="The page you are looking for doesn't exist.">
+  <div class="site-wrapper">
+    <Navbar />
+    <main class="not-found-main">
+      <div class="not-found-content">
+        <div class="not-found-code">404</div>
+        <h1 class="not-found-title">Page Not Found</h1>
+        <p class="not-found-body">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div class="not-found-actions">
+          <a href="/" class="btn btn-primary">
+            <i class="fas fa-home"></i> Go Home
+          </a>
+          <a href="/blog/" class="btn btn-outline">
+            <i class="fas fa-blog"></i> Read Blog
+          </a>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .not-found-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .not-found-content {
+    text-align: center;
+    max-width: 480px;
+    animation: fadeInUp 0.5s ease both;
+  }
+
+  .not-found-code {
+    font-size: clamp(5rem, 15vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.04em;
+    opacity: 0.85;
+  }
+
+  .not-found-title {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin-bottom: 1rem;
+  }
+
+  .not-found-body {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.65;
+  }
+
+  .not-found-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

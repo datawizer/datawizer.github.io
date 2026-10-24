@@ -1,0 +1,285 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const projects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group by category
+const categories = [...new Set(projects.map(p => p.data.category || 'General'))];
+---
+
+<PageLayout title="Portfolio" description="AI Engineering, Machine Learning, Deep Learning & Full-Stack AI projects." showSidebar={true}>
+  <div class="page-header">
+    <h1 class="section-title">Portfolio</h1>
+    <p class="page-desc">A collection of AI engineering, machine learning, deep learning, and full-stack software projects.</p>
+  </div>
+
+  {projects.length === 0 ? (
+    <div class="empty-state">
+      <i class="fas fa-folder-open"></i>
+      <p>No projects yet. Check back soon!</p>
+    </div>
+  ) : (
+    categories.map((category) => {
+      const categoryProjects = projects.filter(p => (p.data.category || 'General') === category);
+      return (
+        <div class="category-group">
+          <h2 class="category-label">
+            <i class="fas fa-layer-group"></i> {category}
+          </h2>
+          <div class="projects-grid">
+            {categoryProjects.map((project) => (
+              <a href={`/portfolio/${project.slug}/`} class="project-card animate-fade-up">
+                {project.data.image && (
+                  <div class="project-image">
+                    <img src={project.data.image} alt={project.data.title} loading="lazy" />
+                    <div class="project-image-overlay">
+                      <span><i class="fas fa-arrow-right"></i> View Project</span>
+                    </div>
+                  </div>
+                )}
+                {!project.data.image && (
+                  <div class="project-image-placeholder">
+                    <i class="fas fa-code"></i>
+                  </div>
+                )}
+                <div class="project-body">
+                  <span class="project-category-badge">{project.data.category}</span>
+                  <h3 class="project-title">{project.data.title}</h3>
+                  {project.data.excerpt && (
+                    <p class="project-excerpt">{project.data.excerpt}</p>
+                  )}
+                  <div class="project-footer">
+                    <span class="project-date">
+                      <i class="fas fa-calendar-alt"></i>
+                      {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short' }).format(project.data.date)}
+                    </span>
+                    {project.data.github && (
+                      <span class="project-github">
+                        <i class="fab fa-github"></i> GitHub
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      );
+    })
+  )}
+</PageLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-desc {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .category-group {
+    margin-bottom: 3rem;
+  }
+
+  .category-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #ffffff;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .category-label i {
+    color: #ffffff;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    z-index: 2;
+  }
+
+  .project-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .project-image {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #0d0d10;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .project-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 9, 11, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+    color: #000000;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .project-image-overlay span {
+    background: #ffffff;
+    color: #000000;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+  }
+
+  .project-card:hover .project-image-overlay {
+    opacity: 1;
+  }
+
+  .project-image-placeholder {
+    aspect-ratio: 16/9;
+    background: #0d0d10;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .project-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-category-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: var(--font-mono);
+    color: #ffffff;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    line-height: 1.35;
+    transition: var(--transition);
+  }
+
+  .project-card:hover .project-title {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .project-excerpt {
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .project-date,
+  .project-github {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--color-text-faint);
+    font-family: var(--font-mono);
+  }
+
+  .project-github i {
+    font-size: 0.9rem;
+    color: #ffffff;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+    display: block;
+  }
+</style>

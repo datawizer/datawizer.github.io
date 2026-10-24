@@ -1,0 +1,230 @@
+---
+import { siteConfig } from '../data/site';
+
+const { author } = siteConfig;
+---
+
+<aside class="author-sidebar">
+  <div class="author-card">
+    <div class="author-avatar-wrap">
+      {author.avatar ? (
+        <img src={author.avatar} alt={author.name} class="author-avatar-img" />
+      ) : (
+        <div class="author-avatar-placeholder">
+          <i class="fas fa-user"></i>
+        </div>
+      )}
+      <div class="avatar-glow"></div>
+    </div>
+
+    <div class="author-info">
+      <h3 class="author-name">{author.name}</h3>
+      <p class="author-bio">{author.bio}</p>
+      <p class="author-location">
+        <i class="fas fa-map-marker-alt"></i>
+        {author.location}
+      </p>
+    </div>
+
+    <div class="author-links">
+      {author.email && (
+        <a href={`mailto:${author.email}`} class="author-link" title="Email" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+          <span>Email</span>
+        </a>
+      )}
+      {author.github && (
+        <a href={`https://github.com/${author.github}`} class="author-link" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+      )}
+      {author.linkedin && (
+        <a href={`https://www.linkedin.com/in/${author.linkedin}`} class="author-link" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+      )}
+      {author.twitter && (
+        <a href={`https://twitter.com/${author.twitter}`} class="author-link" target="_blank" rel="noopener" title="Twitter / X" aria-label="Twitter">
+          <i class="fab fa-x-twitter"></i>
+          <span>Twitter</span>
+        </a>
+      )}
+    </div>
+  </div>
+</aside>
+
+<style>
+  .author-sidebar {
+    position: sticky;
+    top: 84px;
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  .author-card {
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .author-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  }
+
+  .author-card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .author-avatar-wrap {
+    position: relative;
+    width: 90px;
+    height: 90px;
+  }
+
+  .author-avatar-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    position: relative;
+    z-index: 1;
+    background: #141418;
+    transition: var(--transition);
+    display: block;
+  }
+
+  .author-card:hover .author-avatar-img {
+    border-color: #ffffff;
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+
+  .author-avatar-placeholder {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #141418;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition);
+  }
+
+  .author-card:hover .author-avatar-placeholder {
+    border-color: #ffffff;
+    transform: scale(1.02);
+  }
+
+  .avatar-glow {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    filter: blur(10px);
+    z-index: 0;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .author-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .author-bio {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .author-location {
+    font-size: 0.8rem;
+    color: var(--color-text-faint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0;
+  }
+
+  .author-location i {
+    color: #ffffff;
+    font-size: 0.75rem;
+  }
+
+  .author-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .author-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .author-link:hover {
+    color: #000000;
+    border-color: #ffffff;
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  }
+
+  .author-link i {
+    width: 16px;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .author-sidebar {
+      display: none;
+    }
+  }
+</style>

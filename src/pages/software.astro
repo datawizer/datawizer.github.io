@@ -1,0 +1,67 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout title="Software" description="Software tools and utilities by Datawizer.">
+  <div class="page-header">
+    <h1 class="section-title">Software</h1>
+  </div>
+  <div class="empty-state">
+    <i class="fas fa-code"></i>
+    <h3>Coming Soon</h3>
+    <p>Software projects and tools are being documented. Check back soon!</p>
+    <a href="/" class="btn btn-outline" style="margin-top: 1.25rem;">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </div>
+</PageLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4.5rem 2rem;
+    color: var(--color-text-muted);
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .empty-state::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    display: block;
+    opacity: 0.85;
+  }
+
+  .empty-state h3 {
+    font-size: 1.35rem;
+    color: #ffffff;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+
+  .empty-state p {
+    font-size: 0.95rem;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+</style>

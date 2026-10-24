@@ -1,0 +1,9 @@
+{
+  "promptDelete": false,
+  "newLinkFormat": "absolute",
+  "useMarkdownLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "_posts",
+  "attachmentFolderPath": "images/portfolio/Emissions-Dashboard-Databricks",
+  "alwaysUpdateLinks": true
+}

@@ -1,0 +1,61 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import AuthorSidebar from '../components/AuthorSidebar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  showSidebar?: boolean;
+}
+
+const { title, description, showSidebar = true } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="site-wrapper">
+    <Navbar />
+    <main class={`main-content ${showSidebar ? 'with-sidebar' : ''}`}>
+      <div class="container">
+        <div class={showSidebar ? 'content-grid' : ''}>
+          {showSidebar && <AuthorSidebar />}
+          <div class="page-body">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 3rem 0 4rem;
+  }
+
+  .content-grid {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .page-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    .content-grid {
+      display: block;
+    }
+  }
+</style>

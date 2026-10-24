@@ -1,0 +1,440 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout title="Datawizer" description="AI Engineering, Data Science, ML, Deep Learning & Software Engineering with Next.js and shadcn/ui.">
+  <!-- Hero -->
+  <section class="hero-section">
+    <div class="hero-eyebrow">
+      <span class="hero-badge">
+        <i class="fas fa-circle-dot pulse"></i> Building AI &amp; Full-Stack Systems
+      </span>
+    </div>
+    <h1 class="hero-title">
+      <span class="wave">👋</span> Hey, I'm <span class="gradient-text">Datawizer</span>
+    </h1>
+    <p class="hero-subtitle">
+      <strong>AI Engineering &bull; Data Science &bull; Deep Learning &bull; Software Engineering</strong>
+    </p>
+    <p class="hero-body">
+      Specialized in architecting intelligent systems and production-grade software. I build end-to-end
+      solutions spanning AI engineering (LLM agents, RAG, vector retrieval), deep learning and predictive modeling
+      (PyTorch, Transformers, Scikit-Learn), and modern full-stack web applications using Next.js, TypeScript,
+      Tailwind CSS, and shadcn/ui.
+    </p>
+    <div class="hero-actions">
+      <a href="/portfolio/" class="btn btn-primary">
+        <i class="fas fa-code"></i> Explore Projects
+      </a>
+      <a href="/blog/" class="btn btn-outline">
+        <i class="fas fa-newspaper"></i> Read Blog
+      </a>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="highlights-section">
+    <div class="highlight-card animate-fade-up">
+      <div class="highlight-icon"><i class="fas fa-brain"></i></div>
+      <div>
+        <h4>AI Engineering &amp; LLMs</h4>
+        <p>Developing agentic workflows, contextual RAG systems, semantic embeddings, and production LLM orchestration.</p>
+      </div>
+    </div>
+    <div class="highlight-card animate-fade-up" style="animation-delay: 0.08s;">
+      <div class="highlight-icon"><i class="fas fa-network-wired"></i></div>
+      <div>
+        <h4>Machine &amp; Deep Learning</h4>
+        <p>Training and fine-tuning neural architectures, Transformers, and statistical ML models with PyTorch and Scikit-Learn.</p>
+      </div>
+    </div>
+    <div class="highlight-card animate-fade-up" style="animation-delay: 0.16s;">
+      <div class="highlight-icon"><i class="fas fa-laptop-code"></i></div>
+      <div>
+        <h4>Full-Stack (Next.js &amp; shadcn/ui)</h4>
+        <p>Crafting high-performance, accessible web interfaces utilizing Next.js App Router, TypeScript, and shadcn/ui.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills-section">
+    <h2 class="section-title">Technical Arsenal</h2>
+    <div class="skills-grid">
+      {[
+        {
+          icon: 'fa-robot',
+          title: 'AI Engineering & RAG',
+          desc: 'Designing contextual retrieval-augmented generation (RAG) pipelines, autonomous AI agents, and LLM integrations.',
+        },
+        {
+          icon: 'fa-brain',
+          title: 'Deep Learning & PyTorch',
+          desc: 'Building and fine-tuning deep neural networks, Transformers, and computer vision / NLP models with PyTorch.',
+        },
+        {
+          icon: 'fa-square-root-variable',
+          title: 'Machine Learning & Data Science',
+          desc: 'Statistical data modeling, predictive algorithms, feature engineering, and hypothesis testing with Scikit-Learn.',
+        },
+        {
+          icon: 'fa-layer-group',
+          title: 'Next.js & React Ecosystem',
+          desc: 'Architecting scalable web applications utilizing Next.js App Router, React Server Components, and TypeScript.',
+        },
+        {
+          icon: 'fa-cubes',
+          title: 'UI Engineering with shadcn/ui',
+          desc: 'Building accessible, modern design systems with Tailwind CSS, shadcn/ui component architecture, and Radix primitives.',
+        },
+        {
+          icon: 'fa-server',
+          title: 'Python & Backend Systems',
+          desc: 'Developing high-throughput RESTful APIs, asynchronous pipelines, and scalable microservices with Python and FastAPI.',
+        },
+        {
+          icon: 'fa-database',
+          title: 'Vector Databases & Storage',
+          desc: 'Semantic search, high-dimensional vector embeddings, and data persistence using Pinecone, Chroma, and PostgreSQL.',
+        },
+        {
+          icon: 'fa-gears',
+          title: 'MLOps & Software Lifecycle',
+          desc: 'Containerization with Docker, CI/CD automated deployments, model monitoring, Git version control, and cloud platforms.',
+        },
+      ].map((skill, index) => (
+        <div class="skill-card animate-fade-up" style={`animation-delay: ${index * 0.04}s;`}>
+          <div class="skill-icon-wrap">
+            <i class={`fas ${skill.icon}`}></i>
+          </div>
+          <div class="skill-body">
+            <h4>{skill.title}</h4>
+            <p>{skill.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Beyond Work -->
+  <section class="beyond-section">
+    <h2 class="section-title">Beyond Work</h2>
+    <p>
+      I'm passionate about continuous learning and the bleeding edge of AI research. When not training models
+      or engineering Next.js web applications, you'll find me exploring generative AI paradigms, contributing to open-source
+      tools, blogging about deep learning architectures, and tinkering with ambitious software projects.
+    </p>
+    <div class="beyond-actions">
+      <a href="/portfolio/" class="btn btn-primary">
+        <i class="fas fa-folder-open"></i> Explore My Portfolio
+      </a>
+      <a href="/blog/" class="btn btn-outline">
+        <i class="fas fa-blog"></i> Read My Blog
+      </a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  /* ===== Hero ===== */
+  .hero-section {
+    padding: 1.5rem 0 3.5rem;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.35rem 0.95rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  .pulse {
+    font-size: 0.65rem;
+    color: #ffffff;
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(0.85);
+    }
+  }
+
+  .wave {
+    display: inline-block;
+    animation: wave 1.6s ease-in-out;
+    transform-origin: 70% 70%;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-20deg); }
+    40% { transform: rotate(20deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(10deg); }
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .gradient-text {
+    background: linear-gradient(180deg, #ffffff 30%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.35rem;
+    letter-spacing: -0.01em;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  }
+
+  .hero-subtitle strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .hero-body {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: 720px;
+    margin-bottom: 2.25rem;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  /* ===== Highlights ===== */
+  .highlights-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+    margin: 3rem 0 3.5rem;
+  }
+
+  .highlight-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.15rem;
+    padding: 1.65rem 1.5rem;
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  }
+
+  .highlight-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .highlight-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+
+  .highlight-card:hover .highlight-icon {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+  }
+
+  .highlight-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: #ffffff;
+  }
+
+  .highlight-card p {
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ===== Skills ===== */
+  .skills-section {
+    margin-bottom: 4rem;
+  }
+
+  .skills-section .section-title {
+    margin-bottom: 1.75rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.15rem;
+  }
+
+  .skill-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.15rem;
+    padding: 1.35rem 1.5rem;
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  }
+
+  .skill-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-hover);
+  }
+
+  .skill-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    transition: var(--transition);
+  }
+
+  .skill-card:hover .skill-icon-wrap {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
+
+  .skill-body h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #ffffff;
+  }
+
+  .skill-body p {
+    font-size: 0.835rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ===== Beyond ===== */
+  .beyond-section {
+    padding: 2.5rem 2rem;
+    background: var(--gradient-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .beyond-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  }
+
+  .beyond-section .section-title {
+    margin-bottom: 1rem;
+  }
+
+  .beyond-section p {
+    color: var(--color-text-muted);
+    max-width: 680px;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  .beyond-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+    .beyond-section {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>
